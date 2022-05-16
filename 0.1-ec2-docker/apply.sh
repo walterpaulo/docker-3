@@ -8,7 +8,7 @@
 #####	E-MAIL:				walter0paulo@hotmail.com
 #####	DISTRO:				Ubuntu GNU/Linux
 #####	LICENÇA:			GPLv3
-#####	PROJETO:	        https://github.com/walterpaulo/terraform-ansible-aws-jenkins		
+#####	REPOSITÓRIO:        https://github.com/walterpaulo/		
 
 DIR=terraform/
 
