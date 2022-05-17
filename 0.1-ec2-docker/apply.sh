@@ -25,7 +25,7 @@ DNS=$(terraform output aws_instance_e_ssh)
 DNS=$(echo $DNS | sed -e "s/\"//g")
 
 echo "
-[Jenskins]
+[host_docker]
 $DNS
 " > ../ansible/hosts
 
