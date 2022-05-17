@@ -45,3 +45,7 @@
     - name: "Restart docker"
       shell: sudo systemctl restart docker
       become: yes
+
+    - name: "Adicionando permissão no grupo docker"
+      shell: sudo usermod -aG docker $USER && newgrp docker
+      become: yes
