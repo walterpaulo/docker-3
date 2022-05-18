@@ -47,5 +47,5 @@
       become: yes
 
     - name: "Adicionando permissão no grupo docker"
-      shell: sudo usermod -aG docker $USER && newgrp docker
+      shell: usermod -aG docker ubuntu
       become: yes
