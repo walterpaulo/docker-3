@@ -19,6 +19,7 @@
         - curl
         - gpg-agent
         - software-properties-common
+        - docker-compose
 
     - name: add docker GPG key
       become: true
