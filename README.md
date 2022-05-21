@@ -43,3 +43,8 @@ docker ps -a
 ```
 docker rm $(docker ps -a --quiet)
 ```
+
+### new image
+```
+docker build -t walterpaulo/my_image -f Dockerfile 
+```
