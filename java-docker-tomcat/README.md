@@ -33,3 +33,9 @@ docker exec -it javawar bash
 http://localhost:8080
 
 ```
+
+### Filtro
+init
+```
+docker images -f "dangling=true" -q
+```

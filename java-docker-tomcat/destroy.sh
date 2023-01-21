@@ -11,7 +11,21 @@
 #####	REPOSITÓRIO:        https://github.com/walterpaulo
 #####	PORTFOLIO:          https://www.walterpaulo.com.br
 
-docker rmi walterpaulo/java8teste:latest -f
-docker stop javawar
-docker rm javawar
-mvn clean
+IMAGE=$(docker images |grep "walterpaulo/java8teste"|awk '{print $3}')
+NOME_CONTAINER=$(docker ps |grep "javawar"|awk '{print $12}')
+if [ $NOME_CONTAINER ]; then
+    docker rm -f $NOME_CONTAINER
+    echo "Excluded Container"
+else
+   echo "Container not found"
+fi 
+
+if [ $IMAGE ]; then
+    docker rmi $IMAGE
+   echo "Excluded Image"
+else
+   echo "Image not found"
+fi 
+# echo "Limpando cache app"
+# mvn clean
+# docker rmi $IMAGE

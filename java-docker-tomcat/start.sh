@@ -11,7 +11,6 @@
 #####	REPOSITÓRIO:        https://github.com/walterpaulo
 #####	PORTFOLIO:          https://www.walterpaulo.com.br
 
-mvn clean
-mvn package
+mvn clean install
 docker build -t walterpaulo/java8teste -f Dockerfile .
 sudo docker run -d -p 8080:8080 --name javawar walterpaulo/java8teste
