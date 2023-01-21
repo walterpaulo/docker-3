@@ -28,4 +28,3 @@ else
 fi 
 # echo "Limpando cache app"
 # mvn clean
-# docker rmi $IMAGE
