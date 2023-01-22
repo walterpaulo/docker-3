@@ -1,7 +1,7 @@
 
 #!/bin/bash
 #####	NOME:				stop.sh
-#####	VERSÃO:				0.0.1
+#####	VERSÃO:				1.0.0
 #####	DESCRIÇÃO:			Parar aplicacao.
 #####	DATA DA CRIAÇÃO:	20/01/2023
 #####	ESCRITO POR:		Walter Paulo
@@ -11,8 +11,8 @@
 #####	REPOSITÓRIO:        https://github.com/walterpaulo
 #####	PORTFOLIO:          https://www.walterpaulo.com.br
 
-IMAGE=$(docker images |grep "walterpaulo/java8teste"|awk '{print $3}')
-NOME_CONTAINER=$(docker ps |grep "javawar"|awk '{print $12}')
+IMAGE=$(docker images |grep "walterpaulo/java17tomcat"|awk '{print $3}')
+NOME_CONTAINER=$(docker ps |grep "javawar"|awk '{print $13}')
 if [ $NOME_CONTAINER ]; then
     docker rm -f $NOME_CONTAINER
     echo "Excluded Container"

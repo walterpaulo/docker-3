@@ -1,7 +1,7 @@
 
 #!/bin/bash
 #####	NOME:				start.sh
-#####	VERSÃO:				0.0.1
+#####	VERSÃO:				1.0.0
 #####	DESCRIÇÃO:			Iniicar aplicacao.
 #####	DATA DA CRIAÇÃO:	20/01/2023
 #####	ESCRITO POR:		Walter Paulo
@@ -12,5 +12,5 @@
 #####	PORTFOLIO:          https://www.walterpaulo.com.br
 
 mvn clean install
-docker build -t walterpaulo/java8teste -f Dockerfile .
-sudo docker run -d -p 8080:8080 --name javawar walterpaulo/java8teste
+docker build -t walterpaulo/java17tomcat -f Dockerfile .
+sudo docker run -d -p 8080:8080 --name javawar walterpaulo/java17tomcat
