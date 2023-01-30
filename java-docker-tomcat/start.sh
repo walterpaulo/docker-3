@@ -12,5 +12,6 @@
 #####	PORTFOLIO:          https://www.walterpaulo.com.br
 
 mvn clean install
-docker build -t walterpaulo/java17tomcat -f Dockerfile .
-sudo docker run -d -p 8080:8080 --name javawar walterpaulo/java17tomcat
+# mvn spring-boot:run
+# docker build -t walterpaulo/java17tomcat -f Dockerfile .
+# sudo docker run -d -p 8080:8080 --name javawar walterpaulo/java17tomcat

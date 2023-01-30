@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.example.demo.errors.exception.UsuarioNotFoundException;
+import com.example.demo.errors.exception.ModelNotFoundException;
+
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(UsuarioNotFoundException.class)
-  public ResponseEntity<?> handleUsuarioNotFoundException(UsuarioNotFoundException usuarioNotFoundException) {
+  @ExceptionHandler(ModelNotFoundException.class)
+  public ResponseEntity<?> handleUsuarioNotFoundException(ModelNotFoundException usuarioNotFoundException) {
     ErrorDetails errorDetails = ErrorDetails.builder()
         .message(usuarioNotFoundException.getMessage())
         .build();

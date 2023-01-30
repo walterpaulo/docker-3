@@ -11,25 +11,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.models.Usuario;
-import com.example.demo.services.UsuarioService;
+import com.example.demo.models.Fornecedor;
+import com.example.demo.services.FornecedorService;
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/usuario")
-public class UsuarioController {
+@RequestMapping(value = "/fornecedor")
+public class FornecedorController {
 
-    private final UsuarioService service;
+    private final FornecedorService service;
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody Usuario usuario){
-        return new ResponseEntity<>(service.create(usuario), HttpStatus.CREATED);
+    public ResponseEntity<?> create(@RequestBody Fornecedor fornecedor){
+        return new ResponseEntity<>(service.create(fornecedor), HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@RequestBody Usuario usuario){
-        return new ResponseEntity<>(service.update(usuario), HttpStatus.CREATED);
+    public ResponseEntity<?> update(@RequestBody Fornecedor fornecedor){
+        boolean isFornecedor = service.existsById(fornecedor.getId());
+            if(!isFornecedor){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        return new ResponseEntity<>(service.update(fornecedor), HttpStatus.CREATED);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
