@@ -1,6 +1,10 @@
 package com.example.demo.services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +43,12 @@ public class FornecedorService {
     return persistir.save(fornecedor);
   }
 
-public boolean existsById(Long id) {
+  public boolean existsById(Long id) {
     return persistir.existsById(id);
-}
+  }
+
+  public List<Fornecedor> filtroNomes(String nomes) {
+    List<String> nomesLista = new ArrayList<String>(Arrays.asList(nomes.split(",")));
+    return persistir.filtroNomes(nomesLista);
+  }
 }
