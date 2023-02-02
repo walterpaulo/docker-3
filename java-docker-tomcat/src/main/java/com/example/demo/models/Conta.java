@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import jakarta.persistence.CascadeType;
@@ -20,8 +21,10 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
     private String descricao;
-    private Double preco;
+    private boolean status;
+    private BigDecimal preco;
     private Date dataInclucao;
     private Date dataAlteracao;
 
@@ -31,6 +34,7 @@ public class Conta {
 
     @PrePersist
     public void create(){
+        this.status = (this.status == true) ? this.status : true;
         this.dataInclucao = (this.dataInclucao == null) ? new Date() : this.dataInclucao;
         this.dataAlteracao = (this.dataAlteracao == null) ? new Date() : this.dataAlteracao;
     }

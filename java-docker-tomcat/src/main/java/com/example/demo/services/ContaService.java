@@ -6,39 +6,41 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.errors.exception.ModelNotFoundException;
-import com.example.demo.models.Fornecedor;
-import com.example.demo.repository.FornecedorRepository;
+import com.example.demo.models.Conta;
+import com.example.demo.repository.ContaRepository;
 
 @Service
-public class FornecedorService {
+public class ContaService {
 
   @Autowired
-  FornecedorRepository persistir;
+  ContaRepository persistir;
 
-  public Object create(Fornecedor fornecedor) {
+  public Conta create(Conta fornecedor) {
     return persistir.save(fornecedor);
   }
 
-  public Object findAll() {
-    return persistir.findAll();
+  public Page<Conta> findAll(Pageable page) {
+    return persistir.findAll(page);
   }
 
-  public Fornecedor findById(Long id) {
-    Optional<Fornecedor> objeto = persistir.findById(id);
-    return objeto.orElseThrow(() -> new ModelNotFoundException("Fornecedor não encontado"));
+  public Conta findById(Long id) {
+    Optional<Conta> objeto = persistir.findById(id);
+    return objeto.orElseThrow(() -> new ModelNotFoundException("Conta não encontado"));
   }
 
   public void deleteById(Long id) {
-    Optional<Fornecedor> objeto = persistir.findById(id);
+    Optional<Conta> objeto = persistir.findById(id);
     objeto.ifPresentOrElse((obj) -> {
       persistir.deleteById(obj.getId());
-    }, () -> new ModelNotFoundException("Fornecedor não encontado"));
+    }, () -> new ModelNotFoundException("Conta não encontado"));
   }
 
-  public Object update(Fornecedor fornecedor) {
+  public Object update(Conta fornecedor) {
     return persistir.save(fornecedor);
   }
 
@@ -46,7 +48,7 @@ public class FornecedorService {
     return persistir.existsById(id);
   }
 
-  public List<Fornecedor> filtroNomes(String nomes) {
+  public List<Conta> filtroNomes(String nomes) {
     List<String> nomesLista = new ArrayList<String>(Arrays.asList(nomes.split(",")));
     return persistir.filtroNomes(nomesLista);
   }

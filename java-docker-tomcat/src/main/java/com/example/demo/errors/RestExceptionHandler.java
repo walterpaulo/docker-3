@@ -1,5 +1,6 @@
 package com.example.demo.errors;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -11,7 +12,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.example.demo.errors.exception.ModelNotFoundException;
-
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -33,4 +33,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(errorDetails, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
   }
 
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  protected ResponseEntity<?> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+    ErrorDetails errorDetails = ErrorDetails.builder()
+        .message(e.getCause().getMessage())
+        .build();
+    return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+  }
 }

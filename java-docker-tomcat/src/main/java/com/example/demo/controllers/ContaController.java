@@ -2,6 +2,8 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,36 +15,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.models.Fornecedor;
-import com.example.demo.services.FornecedorService;
+import com.example.demo.models.Conta;
+import com.example.demo.services.ContaService;
 
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/api/fornecedor")
-public class FornecedorController {
+@RequestMapping(value = "/api/conta")
+public class ContaController {
 
-    private final FornecedorService service;
+    private final ContaService service;
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody Fornecedor fornecedor){
-        return new ResponseEntity<>(service.create(fornecedor), HttpStatus.CREATED);
+    public ResponseEntity<?> create(@RequestBody Conta conta){
+        return new ResponseEntity<>(service.create(conta), HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@RequestBody Fornecedor fornecedor){
-        boolean isFornecedor = service.existsById(fornecedor.getId());
-            if(!isFornecedor){
+    public ResponseEntity<?> update(@RequestBody Conta conta){
+        boolean isConta = service.existsById(conta.getId());
+            if(!isConta){
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-        return new ResponseEntity<>(service.update(fornecedor), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.update(conta), HttpStatus.CREATED);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> all(){
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    public ResponseEntity<?> all(  @PageableDefault(
+    page = 0,
+    size = 10) Pageable page){
+        return new ResponseEntity<>(service.findAll(page), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,7 +62,7 @@ public class FornecedorController {
 
     @GetMapping(path = "/filtro", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> filtro(@PathParam("nomes") String nomes){
-        List<Fornecedor> fornecedores = service.filtroNomes(nomes);
-        return new ResponseEntity<>(fornecedores, HttpStatus.OK);
+        List<Conta> contaes = service.filtroNomes(nomes);
+        return new ResponseEntity<>(contaes, HttpStatus.OK);
     }
 }
