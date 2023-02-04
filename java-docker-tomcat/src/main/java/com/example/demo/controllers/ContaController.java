@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.models.Conta;
 import com.example.demo.services.ContaService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api/conta")
+@Tag(name = "Conta", description = "contas")
 public class ContaController {
 
     private final ContaService service;

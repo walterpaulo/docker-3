@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.models.Fornecedor;
 import com.example.demo.services.FornecedorService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api/fornecedor")
+@Tag(name = "Fornecedor", description = "fornecedores")
 public class FornecedorController {
 
     private final FornecedorService service;

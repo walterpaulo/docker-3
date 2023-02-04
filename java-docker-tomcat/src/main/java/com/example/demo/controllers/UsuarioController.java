@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.models.Usuario;
 import com.example.demo.services.UsuarioService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/usuario")
+@Tag(name = "Usuario", description = "usuários")
 public class UsuarioController {
 
     private final UsuarioService service;
